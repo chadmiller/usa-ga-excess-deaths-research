@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+import re
+import sys
+import csv
+
+
+def addresser(l):
+    address = list()
+    for line in l:
+        if line == "\x0c":
+            continue
+
+        if len(address) > 2 and line.endswith(" County"):
+            if len(address) == 5:
+                address.insert(2, "")
+            assert address[4].split()[-1][0] in "0123456789", address
+            address.insert(1, address[4].split()[-1])
+            yield address
+            address = list()
+
+        if address and len(line) < 7:
+            address[-1] = address[-1] + " " + line
+            continue
+
+        address.append(line)
+
+    if len(address) == 5:
+        address.insert(2, "")
+    address.insert(1, address[4].split()[-1])
+    yield address
+
+
+column1, column2 = list(), list()
+
+with open(sys.argv[1]) as pdftext:
+    for line in pdftext:
+        line = line.rstrip("\n")
+        if "      GA Vital Records Offices" in line:
+            continue
+        if not line:
+            continue
+        parts = re.split(r"(?!<^) {3,}", line)
+        if parts[0] == "":
+            column2.append(parts[1].strip())
+        else:
+            column1.append(parts[0])
+            if len(parts) >= 2:
+                column2.append(parts[1])
+                assert len(parts) == 2
+
+
+with open(sys.argv[2], "w") as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(["county", "zip", "addressee", "address1", "address2", "addresscitystatezip", "phonenumber"])
+
+    for row in addresser(column1):
+        writer.writerow(row)
+    for row in addresser(column2):
+        writer.writerow(row)
+
+

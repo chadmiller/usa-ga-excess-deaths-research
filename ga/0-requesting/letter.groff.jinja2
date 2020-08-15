@@ -1,0 +1,98 @@
+.ds CH
+
+Chad Miller
+.br
+cfa@chad.org
+.br
+2247 Drew Valley Road NE
+.br
+Brookhaven, GA 30319
+
+
+{{date}}
+
+
+Custodian of Vital Records
+.br
+c/o {{addressee}}
+
+
+Dear {{addressee}} and Custodian of Vital Records:
+
+Under the Georgia Open Records Act \(sc50.18.70 et seq., I am requesting copies of public records of deaths within {{county}} from August 1 2018 through the present, in
+.B
+computer-processable format
+.R
+such as comma-separated-value computer text-files (or equivalent unambiguous interoperable format). The records each should contain at least the
+.B
+cause of death, date of death, county of reporting, and internal record identifier,
+.R
+though other data is welcome after that record (such as additional cause-of-death notes) if it might be related.
+
+E.g.,
+.DS B
+.CW
+liver failure, 2020-01-10, {{county}}, 41234123
+.br
+.CW
+covid19, 2020-01-10, {{county}}, 41234124
+.br
+ ...
+.DE
+
+In order to save effort, please upload relevant files to
+.br
+.DS C
+.CW
+.ps 12
+http://exc.chad.org/exc/{{username}}
+.ps 0
+.R
+.DE
+.TS
+center tab(|);
+rp12 lf6p12.
+username:|{{username}}
+password:|{{password}}
+.TE
+
+If there are any fees for searching or copying these records, please inform me if the cost will exceed $20.  However, I would also like to request a waiver of all fees in that the disclosure of the requested information is in the public interest and will contribute significantly to the public’s understanding of SARS-CoV and COVID-19 epidemiology. This information is not being sought for commercial purposes.
+
+The Georgia Open Records Act requires a response time within three business days.  If access to the records I am requesting will take longer than three days, please contact me (
+.CW
+cfa@chad.org
+.R
+) with information about when I might expect copies or the ability to inspect the requested records.
+
+If you deny any or all of this request, please cite each specific exemption you feel justifies the refusal to release the information and notify me of the appeal procedures available to me under the law.
+
+Thank you for considering my request.
+
+
+Sincerely,
+
+Chad Miller
+.bp
+
+
+
+Chad Miller
+.br
+2247 Drew Valley Rd NE
+.br
+Brookhaven, GA 30319
+.br
+.br
+
+.DS C
+Custodian of Vital Records
+.br
+c/o {{addressee}}
+.br
+{% if address1 %}{{address1}}
+.br
+{% endif %}{{address2}}
+.br
+{{addresscitystatezip}}
+.DE
+
